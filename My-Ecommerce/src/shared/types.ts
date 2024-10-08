@@ -1,5 +1,6 @@
 export enum SelectedPage{
     Home = "home",
-    MyWishList = "mywishlist",
-    MyBag = "mybag"
+    Discover = "discover",
+    MyBag = "mybag",
+    ContactUs = "contactus"
   }
