@@ -45,7 +45,18 @@ const Home = ({setSelectedPage}: Props) => {
         </div>
     </motion.div>
     {/* SPONSORS */}
-
+    {isAboveMediumScreens && (
+        <div className="h-[350px] w-full bg-primary-100 py-10">
+            <div className="mx-auto w-5/6">
+                <div className="flex w-1/6 items-center justify-between gap-40">
+                    <img alt="runners-one" src={HomePageGraphic} />
+                    <img alt="runners-two" src={HomePageGraphic} />
+                    <img alt="runners-three" src={HomePageGraphic} />
+                    <img alt="runners-four" src={HomePageGraphic} />
+                </div>
+            </div>
+        </div>
+    )}
   </section>;
 }
 
