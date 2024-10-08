@@ -5,6 +5,9 @@ import HomePageGraphic from "@/assets/HomePageGraphic.png";
 import HomePageText from "@/assets/HomePageText.png";
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { motion } from 'framer-motion';
+import Design1 from '@/assets/design1.png';
+import Design2 from '@/assets/design2.png';
+import Design3 from '@/assets/design3.png';
 type Props = {
     setSelectedPage : (value: SelectedPage) =>void;
 }
@@ -46,14 +49,34 @@ const Home = ({setSelectedPage}: Props) => {
     </motion.div>
     {/* SPONSORS */}
     {isAboveMediumScreens && (
-        <div className="h-[350px] w-full bg-primary-100 py-10">
+        <div className="h-[285px] w-full bg-primary-100 ">
             <div className="mx-auto w-5/6">
-                <div className="flex w-1/6 items-center justify-between gap-40">
-                    <img alt="runners-one" src={HomePageGraphic} />
-                    <img alt="runners-two" src={HomePageGraphic} />
-                    <img alt="runners-three" src={HomePageGraphic} />
-                    <img alt="runners-four" src={HomePageGraphic} />
-                </div>
+                    <div className="flex items-center justify-between gap-8">
+                        
+                        {/* Image 1 with price */}
+                        <div className="flex flex-col items-center w-1/4">
+                            <img alt="runners-one" src={Design1} className="w-full" />
+                            <p className="mt-8 text-lg font-bold  text-red-600">$39.99</p>
+                        </div>
+                        
+                        {/* Image 2 with price */}
+                        <div className="flex flex-col items-center w-1/4">
+                            <img alt="runners-two" src={HomePageGraphic} className="w-full bg-red-300" />
+                            <p className="mt-8 text-lg font-bold text-red-600">$89.99</p>
+                        </div>
+
+                        {/* Image 3 with price */}
+                        <div className="flex flex-col items-center w-1/4">
+                            <img alt="runners-three" src={Design2} className="w-full" />
+                            <p className="mt-8 text-lg font-bold  text-red-600">$49.99</p>
+                        </div>
+
+                        {/* Image 4 with price */}
+                        <div className="flex flex-col items-center w-1/4">
+                            <img alt="runners-four" src={Design3} className="w-full bg-red-300" />
+                            <p className="mt-8 text-lg font-bold  text-red-600">$59.99</p>
+                        </div>
+                    </div>
             </div>
         </div>
     )}
