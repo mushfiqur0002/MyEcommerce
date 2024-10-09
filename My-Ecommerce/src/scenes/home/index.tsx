@@ -13,7 +13,7 @@ type Props = {
 }
 
 const Home = ({setSelectedPage}: Props) => {
-    const isAboveMediumScreens = useMediaQuery("(min-width:1060px)"); 
+    // const isAboveMediumScreens = useMediaQuery("(min-width:1060px)"); 
   return <section id='home' className='gap-16 bg-gray-20 pb-10 py-10 md:h-full md:pb-0'>
     {/* Home Image and text */}
     <motion.div className='md:flex mx-auto w-5/6 items-center justify-center md:h-5/6' onViewportEnter= {()=> setSelectedPage(SelectedPage.Home)}>
@@ -48,38 +48,38 @@ const Home = ({setSelectedPage}: Props) => {
         </div>
     </motion.div>
     {/* SPONSORS */}
-    {isAboveMediumScreens && (
-        <div className="h-[285px] w-full bg-primary-100 ">
+    {/* //{isAboveMediumScreens && ( */}
+        <div className="h-[397px] w-full">
             <div className="mx-auto w-5/6">
-                    <div className="flex items-center justify-between gap-8">
+                    <div className=" grid grid-cols-2 gap-8 md:flex md:items-center md:justify-between">
                         
                         {/* Image 1 with price */}
-                        <div className="flex flex-col items-center w-1/4">
-                            <img alt="runners-one" src={Design1} className="w-full" />
-                            <p className="mt-8 text-lg font-bold  text-red-600">$39.99</p>
+                        <div className=" flex flex-col items-center w-3/4">
+                            <img alt="runners-one" src={Design1} className='w-full mx-auto md:w-full bg-primary-100'/>
+                            <p className="mt-8 text-lg font-bold text-red-600">$39.99</p>
                         </div>
-                        
+
                         {/* Image 2 with price */}
-                        <div className="flex flex-col items-center w-1/4">
-                            <img alt="runners-two" src={HomePageGraphic} className="w-full bg-red-300" />
+                        <div className="flex flex-col items-center w-3/4">
+                            <img alt="runners-two" src={HomePageGraphic} className="w-full mx-auto md:w-full bg-red-300" />
                             <p className="mt-8 text-lg font-bold text-red-600">$89.99</p>
                         </div>
 
                         {/* Image 3 with price */}
-                        <div className="flex flex-col items-center w-1/4">
-                            <img alt="runners-three" src={Design2} className="w-full" />
+                        <div className="flex flex-col items-center w-3/4">
+                            <img alt="runners-three" src={Design2} className="w-full mx-auto md:w-full bg-primary-100" />
                             <p className="mt-8 text-lg font-bold  text-red-600">$49.99</p>
                         </div>
 
                         {/* Image 4 with price */}
-                        <div className="flex flex-col items-center w-1/4">
-                            <img alt="runners-four" src={Design3} className="w-full bg-red-300" />
+                        <div className="flex flex-col items-center w-3/4">
+                            <img alt="runners-four" src={Design3} className="w-full mx-auto md:w-full bg-red-300" />
                             <p className="mt-8 text-lg font-bold  text-red-600">$59.99</p>
                         </div>
                     </div>
             </div>
         </div>
-    )}
+    {/* )} */}
   </section>;
 }
 
