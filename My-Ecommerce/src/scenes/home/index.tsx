@@ -7,13 +7,31 @@ import { motion } from 'framer-motion';
 import Design1 from '@/assets/design1.png';
 import Design2 from '@/assets/design2.png';
 import Design3 from '@/assets/design3.png';
+import React, { useState } from 'react';
 type Props = {
     setSelectedPage : (value: SelectedPage) =>void;
 }
 
 const Home = ({setSelectedPage}: Props) => {
-    // const isAboveMediumScreens = useMediaQuery("(min-width:1060px)"); 
-  return <section id='home' className='gap-16 bg-gray-20 pb-10 py-10 md:h-full md:pb-0'>
+    // const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
+    const [hovered, setHovered] = useState([false, false, false, false]);
+    const handleMouseEnter = (index: number) => {
+        const newHoveredImages = [...hovered];
+        newHoveredImages[index] = true;
+        setHovered(newHoveredImages);
+      };
+    
+    const handleMouseLeave = (index: number) => {
+        const newHoveredImages = [...hovered];
+        newHoveredImages[index] = false;
+        setHovered(newHoveredImages);
+      };
+      const buttonStyles = (isHovered: boolean) =>
+        `absolute bottom-10 transition-opacity duration-300 bg-secondary-500 text-white font-bold py-2 px-8 rounded  hover:bg-green-500 ${
+          isHovered ? "opacity-100" : "opacity-0"
+        }`;
+
+  return(<section id='home' className='gap-16 bg-gray-20 pb-10 py-10 md:h-full md:pb-0'>
     {/* Home Image and text */}
     <motion.div className='md:flex mx-auto w-5/6 items-center justify-center md:h-5/6' onViewportEnter= {()=> setSelectedPage(SelectedPage.Home)}>
         {/* Main Header */}
@@ -53,33 +71,59 @@ const Home = ({setSelectedPage}: Props) => {
                     <div className=" grid grid-cols-2 gap-8 md:flex md:items-center md:justify-between">
                         
                         {/* Image 1 with price */}
-                        <div className=" flex flex-col items-center w-3/4">
-                            <img alt="runners-one" src={Design1} className='w-full mx-auto md:w-full bg-primary-100'/>
+                        <div className=" relative group flex flex-col items-center w-3/4" 
+                            onMouseEnter={() => handleMouseEnter(0)}
+                            onMouseLeave={() => handleMouseLeave(0)}>
+
+                            <img alt="runners-one" src={Design1} className="w-full mx-auto md:w-full bg-primary-100 "/>
+                            {/* Button appears when hovering over the image */}
+                            <button className={buttonStyles(hovered[0])} >
+                                Add to Bag
+                            </button>
                             <p className="mt-8 text-lg font-bold text-red-600">$39.99</p>
                         </div>
 
                         {/* Image 2 with price */}
-                        <div className="flex flex-col items-center w-3/4">
-                            <img alt="runners-two" src={HomePageGraphic} className="w-full mx-auto md:w-full bg-red-300" />
+                        <div className=" relative group flex flex-col items-center w-3/4"
+                            onMouseEnter={() => handleMouseEnter(1)}
+                            onMouseLeave={() => handleMouseLeave(1)}>
+
+                            <img alt="runners-two" src={HomePageGraphic} className="w-full mx-auto md:w-full bg-red-300 " />
+                            <button className={buttonStyles(hovered[1])} >
+                                Add to Bag
+                            </button>
                             <p className="mt-8 text-lg font-bold text-red-600">$89.99</p>
                         </div>
 
                         {/* Image 3 with price */}
-                        <div className="flex flex-col items-center w-3/4">
-                            <img alt="runners-three" src={Design2} className="w-full mx-auto md:w-full bg-primary-100" />
+                        <div className="relative group flex flex-col items-center w-3/4"
+                            onMouseEnter={() => handleMouseEnter(2)}
+                            onMouseLeave={() => handleMouseLeave(2)}>
+
+                            <img alt="runners-three" src={Design2} className="w-full mx-auto md:w-full bg-primary-100 " />
+                            <button className={buttonStyles(hovered[2])}  >
+                                Add to Bag
+                            </button>
                             <p className="mt-8 text-lg font-bold  text-red-600">$49.99</p>
                         </div>
 
                         {/* Image 4 with price */}
-                        <div className="flex flex-col items-center w-3/4">
-                            <img alt="runners-four" src={Design3} className="w-full mx-auto md:w-full bg-red-300" />
+                        <div className=" relative group flex flex-col items-center w-3/4"
+                            onMouseEnter={() => handleMouseEnter(3)}
+                            onMouseLeave={() => handleMouseLeave(3)}>
+
+                            <img alt="runners-four" src={Design3} className="w-full mx-auto md:w-full bg-red-300 " />
+                            <button className={buttonStyles(hovered[3])}  >
+                                Add to Bag
+                            </button>
                             <p className="mt-8 text-lg font-bold  text-red-600">$59.99</p>
                         </div>
                     </div>
             </div>
         </div>
     {/* )} */}
-  </section>;
+  </section>
+  );
 }
 
 export default Home;
