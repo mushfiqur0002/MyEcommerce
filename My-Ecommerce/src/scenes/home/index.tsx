@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import Design1 from '@/assets/design1.png';
 import Design2 from '@/assets/design2.png';
 import Design3 from '@/assets/design3.png';
-import React, { useState } from 'react';
+import { useState } from 'react';
 type Props = {
     setSelectedPage : (value: SelectedPage) =>void;
 }
