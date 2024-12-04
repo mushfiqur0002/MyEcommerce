@@ -8,11 +8,13 @@ import Design1 from '@/assets/design1.png';
 import Design2 from '@/assets/design2.png';
 import Design3 from '@/assets/design3.png';
 import { useState } from 'react';
-type Props = {
-    setSelectedPage : (value: SelectedPage) =>void;
-}
+import { useOutletContext } from 'react-router-dom';
+import ContactUs from '../contactus';
+import Footer from '../footer';
+type ContextType = { setSelectedPage: (value: SelectedPage) => void };
 
-const Home = ({setSelectedPage}: Props) => {
+const Home = () => {
+    const { setSelectedPage } = useOutletContext<ContextType>();
     // const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
     const [hovered, setHovered] = useState([false, false, false, false]);
     const handleMouseEnter = (index: number) => {
@@ -67,7 +69,7 @@ const Home = ({setSelectedPage}: Props) => {
             variants={{hidden: {opacity: 0, x:-50}, 
             visible:{opacity: 1, x:0}}}>
 
-                <ActionButton setSelectedPage={setSelectedPage}> Shop Now</ActionButton>
+                <ActionButton to="/mybag"> Shop Now</ActionButton>
                 <AnchorLink className='text-sm font-bold text-primary-500 underline hover:text-secondary-500 ' onClick={()=> setSelectedPage(SelectedPage.ContactUs)}
                 href={`#${SelectedPage.ContactUs}`}/>
                 <p className='text-sm font-bold text-primary-500 underline cursor-pointer'> Learn More</p>
@@ -136,8 +138,14 @@ const Home = ({setSelectedPage}: Props) => {
                     </div>
             </div>
         </div>
-    {/* )} */}
-  </section>
+        <div>
+            <ContactUs setSelectedPage={setSelectedPage}/>
+        </div>
+        <div>
+            <Footer/>
+        </div>
+    </section>
+  
   );
 }
 

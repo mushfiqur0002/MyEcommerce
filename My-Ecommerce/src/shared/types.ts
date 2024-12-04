@@ -1,6 +1,8 @@
+import Footer from "@/scenes/footer";
+
 export enum SelectedPage{
     Home = "home",
-    Discover = "discover",
     MyBag = "mybag",
-    ContactUs = "contactus"
+    ContactUs = "contactus",
+    Footer = "footer"
   }
