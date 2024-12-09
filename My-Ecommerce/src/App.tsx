@@ -1,10 +1,9 @@
 import Navbar from "@/scenes/navbar";
-import Home from "@/scenes/home";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
-import Footer from "@/scenes/footer";
 import { Outlet } from "react-router";
-import ContactUs from "./scenes/contactus";
+import Footer from "./scenes/footer";
+
 
 
 function App() {
@@ -25,14 +24,15 @@ function App() {
     }, []);
 
   return (
-    <>
+    <div className=" flex flex-col min-h-screen">
       <Navbar
         isTopOfPage = {isTopOfPage}
         selectedPage={selectedPage} 
         setSelectedPage={setSelectedPage}
       />
       <Outlet context={{ setSelectedPage }}/>
-    </>
+      <Footer/>
+    </div>
 )}
 
 export default App;

@@ -20,10 +20,10 @@ const LoginForm: React.FC = () =>{
     };
 
     //Handle form submisssion
-    const handleSubmit = (event: React.ChangeEvent<HTMLInputElement>)=> {
-      event.preventDefault();
-      console.log("Submitted data", formData);
-    }
+    // const handleSubmit = (event: React.ChangeEvent<HTMLInputElement>)=> {
+    //   event.preventDefault();
+    //   console.log("Submitted data", formData);
+    // }
   return (
     <form className='mt-4'>
       <div>

@@ -9,11 +9,14 @@ import Design2 from '@/assets/design2.png';
 import Design3 from '@/assets/design3.png';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import ContactUs from '../contactus';
-import Footer from '../footer';
+import ContactUs from '@/scenes/contactus';
+import Footer from '@/scenes/footer';
+
+
 type ContextType = { setSelectedPage: (value: SelectedPage) => void };
 
 const Home = () => {
+
     const { setSelectedPage } = useOutletContext<ContextType>();
     // const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
     const [hovered, setHovered] = useState([false, false, false, false]);
@@ -33,7 +36,10 @@ const Home = () => {
           isHovered ? "opacity-100" : "opacity-0"
         }`;
 
-  return(<section id='home' className='gap-16 bg-gray-20 pb-10 py-10 md:h-full md:pb-0'>
+  return(
+  
+    <section id='home' className='gap-16 bg-gray-20 pb-10 py-10 md:h-full md:pb-0'>
+            
     {/* Home Image and text */}
     <motion.div className='md:flex mx-auto w-5/6 items-center justify-center md:h-5/6' onViewportEnter= {()=> setSelectedPage(SelectedPage.Home)}>
         {/* Main Header */}
@@ -141,9 +147,9 @@ const Home = () => {
         <div>
             <ContactUs setSelectedPage={setSelectedPage}/>
         </div>
-        <div>
+        {/* <div >
             <Footer/>
-        </div>
+        </div> */}
     </section>
   
   );
