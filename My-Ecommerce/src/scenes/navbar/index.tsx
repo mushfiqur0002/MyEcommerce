@@ -62,6 +62,9 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                             <LinkPage page="Home" selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
                             <LinkPage page="My Bag" selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
                             <LinkPage page="Contact Us" selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
+                            <div className= "text-centre gap-10 text-lg" >
+                            <ActionButton to="/loginpage"> Sign In</ActionButton>
+                            </div>
                         </div>
             </div>
         ) }

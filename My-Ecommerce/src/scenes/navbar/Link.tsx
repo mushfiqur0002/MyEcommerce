@@ -1,6 +1,6 @@
 import { SelectedPage } from "@/shared/types";
 import AnchorLink from "react-anchor-link-smooth-scroll"
-import { HomeIcon, ShoppingBagIcon} from "@heroicons/react/24/solid";
+import { HomeIcon, ShoppingBagIcon, ChatBubbleLeftEllipsisIcon} from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 type Props = {
@@ -18,6 +18,8 @@ const LinkPage = ({page, selectedPage, setSelectedPage }: Props) => {
               return <Link to="/"><HomeIcon className="h-6 w-6"/></Link>;
           case "My Bag":
               return <ShoppingBagIcon className="h-6 w-6" />;
+          case "Contact Us":
+            return <Link to="/">< ChatBubbleLeftEllipsisIcon className="h-6 w-6"/></Link>;
           default:
               return null;
       }
