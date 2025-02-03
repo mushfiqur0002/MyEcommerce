@@ -1,5 +1,6 @@
 import LoginForm from "@/shared/LoginForm"
 import HomePageText from "@/assets/HomePageText.png";
+import { Link } from "react-router-dom";
 
 type Props =  {}
 
@@ -13,6 +14,10 @@ function LoginPage({}: Props) {
           <h1 className="text-lg font-bold text-red-600"> Log in</h1>
           <div>
               <LoginForm/>
+          </div>
+          <div className="mt-4 text-sm underline">
+            <p> Forgot your password? </p>
+            <Link to="/registerpage"><p> Register Now</p></Link>
           </div>
         </div>
         <div className="mx-20">

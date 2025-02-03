@@ -24,6 +24,7 @@ const inputStyles = `mt-4 w-full rounded-lg bg-primary-300 px-5 py-3 placeholder
     }
   }
 
+  // Contact Us section
   return <section id="contactus" className="mx-auto w-5/6 pt-24 pb-32 mt-80">
     <motion.div onViewportEnter={()=> setSelectedPage(SelectedPage.ContactUs)}>
       {/* Header */}
@@ -96,6 +97,7 @@ const inputStyles = `mt-4 w-full rounded-lg bg-primary-300 px-5 py-3 placeholder
           </form> 
 
         </motion.div>
+        {/* Animation content in the Contact Us section */}
         <motion.div className="relative mt-16 basis-2/5 md:mt-0"
           initial="hidden" 
           whileInView="visible" 
