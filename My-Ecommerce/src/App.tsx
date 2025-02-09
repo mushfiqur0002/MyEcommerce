@@ -5,10 +5,15 @@ import { Outlet } from "react-router";
 import Footer from "./scenes/footer";
 
 
-
 function App() {
+  const [basket, setBasket] = useState<{id: number, name: string, price: number}[]>([]);
    const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home);
    const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
+
+    const addToBasket = (item: {id: number; name: string; price:number}) =>{
+          setBasket((prevBasket)=>[...prevBasket, item]); // Add new item to basket
+    };
+
     useEffect(()=>{
       const handleScroll = ()=>{
         if (window.scrollY === 0){
@@ -29,8 +34,9 @@ function App() {
         isTopOfPage = {isTopOfPage}
         selectedPage={selectedPage} 
         setSelectedPage={setSelectedPage}
+        basketCount={basket.length}
       />
-      <Outlet context={{ setSelectedPage }}/>
+      <Outlet context={{ setSelectedPage, addToBasket, basket}}/>
       <Footer/>
     </div>
 )}

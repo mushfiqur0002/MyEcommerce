@@ -10,9 +10,10 @@ type Props = {
     isTopOfPage: boolean;
     selectedPage: SelectedPage ;
     setSelectedPage: (value: SelectedPage) => void;
+    basketCount: number;
 }
 
-const Navbar = ({isTopOfPage, selectedPage, setSelectedPage }: Props) => {
+const Navbar = ({isTopOfPage, selectedPage, setSelectedPage, basketCount }: Props) => {
     const flexBetween = "flex items-center justify-between";
     const [isMenuToggled, setIsMenuToggled] = useState <boolean> (false);
     const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
@@ -31,7 +32,7 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                         <div> </div>
                         <div className={`${flexBetween} gap-4 text-sm`} >
                             <LinkPage page="Home" selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
-                            <LinkPage page="My Bag" selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
+                            <LinkPage page="My Bag" selectedPage={selectedPage} setSelectedPage={setSelectedPage} basketCount={basketCount}/>
                             <LinkPage page="Contact Us" selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
                             <ActionButton to="/loginpage"> Sign in / Register</ActionButton>
                         </div>
@@ -60,7 +61,7 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                 {/* hm menu items */}
                 <div className="ml-[33%] flex flex-col gap-10 text-2xl" >
                             <LinkPage page="Home" selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-                            <LinkPage page="My Bag" selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
+                            <LinkPage page="My Bag" selectedPage={selectedPage} setSelectedPage={setSelectedPage} basketCount={basketCount}/>
                             <LinkPage page="Contact Us" selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
                             <div className= "text-centre gap-10 text-lg" >
                             <ActionButton to="/loginpage"> Sign In</ActionButton>

@@ -10,31 +10,48 @@ import Design3 from '@/assets/design3.png';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import ContactUs from '@/scenes/contactus';
-import Footer from '@/scenes/footer';
 
 
-type ContextType = { setSelectedPage: (value: SelectedPage) => void };
+
+type ContextType = { 
+    setSelectedPage: (value: SelectedPage) => void
+ };
+
 
 const Home = () => {
-
-    const { setSelectedPage } = useOutletContext<ContextType>();
-    // const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-    const [hovered, setHovered] = useState([false, false, false, false]);
-    const handleMouseEnter = (index: number) => {
-        const newHoveredImages = [...hovered];
-        newHoveredImages[index] = true;
-        setHovered(newHoveredImages);
-      };
     
-    const handleMouseLeave = (index: number) => {
-        const newHoveredImages = [...hovered];
-        newHoveredImages[index] = false;
-        setHovered(newHoveredImages);
+    const { setSelectedPage, addToBasket } = useOutletContext<{ 
+        setSelectedPage: (value: SelectedPage) => void; 
+        addToBasket: (item: { 
+            id: number; 
+            name: string; 
+            price: number 
+        }) => void; 
+    }>();
+
+    //Product list
+    const products =[
+        { id: 1, name: "Runners One", price: 39.99, image: Design1 },
+        { id: 2, name: "Runners Two", price: 89.99, image: HomePageGraphic },
+        { id: 3, name: "Runners Three", price: 49.99, image: Design2 },
+        { id: 4, name: "Runners Four", price: 59.99, image: Design3 },
+    ] 
+    // const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
+    const [hovered, setHovered] = useState<boolean[]>(new Array(products.length).fill(false));
+    //Handling mouse entering image
+    const handleMouseEnter = (index: number) => {
+        setHovered((prev) => prev.map((_, i) => i === index));
       };
-      const buttonStyles = (isHovered: boolean) =>
+
+    //Handling mouse exiting image
+    const handleMouseLeave = (index: number) => {
+        setHovered((prev) => prev.map((_, i) => false));
+      };
+    const buttonStyles = (isHovered: boolean) =>
         `absolute bottom-10 transition-opacity duration-300 bg-secondary-500 text-white font-bold py-2 px-8 rounded  hover:bg-green-500 ${
           isHovered ? "opacity-100" : "opacity-0"
         }`;
+    
 
   return(
   
@@ -75,7 +92,7 @@ const Home = () => {
             variants={{hidden: {opacity: 0, x:-50}, 
             visible:{opacity: 1, x:0}}}>
 
-                <ActionButton to="/mybag"> Shop Now</ActionButton>
+                <ActionButton to="/"> Shop Now</ActionButton>
                 <AnchorLink className='text-sm font-bold text-primary-500 underline hover:text-secondary-500 ' onClick={()=> setSelectedPage(SelectedPage.ContactUs)}
                 href={`#${SelectedPage.ContactUs}`}/>
                 <p className='text-sm font-bold text-primary-500 underline cursor-pointer'> Learn More</p>
@@ -87,69 +104,32 @@ const Home = () => {
             <img alt='home-page-image' src={HomePageGraphic}/>
         </div>
     </motion.div>
-    {/* SPONSORS */}
-    {/* //{isAboveMediumScreens && ( */}
+
+    {/* Products section*/}
         <div className="h-[397px] w-full">
             <div className="mx-auto w-5/6">
                     <div className=" grid grid-cols-2 gap-8 md:flex md:items-center md:justify-between">
-                        
-                        {/* Image 1 with price */}
-                        <div className=" relative group flex flex-col items-center w-3/4" 
-                            onMouseEnter={() => handleMouseEnter(0)}
-                            onMouseLeave={() => handleMouseLeave(0)}>
-
-                            <img alt="runners-one" src={Design1} className="w-full mx-auto md:w-full bg-primary-100 "/>
-                            {/* Button appears when hovering over the image */}
-                            <button className={buttonStyles(hovered[0])} >
-                                Add to Bag
-                            </button>
-                            <p className="mt-8 text-lg font-bold text-red-600">$39.99</p>
-                        </div>
-
-                        {/* Image 2 with price */}
-                        <div className=" relative group flex flex-col items-center w-3/4"
-                            onMouseEnter={() => handleMouseEnter(1)}
-                            onMouseLeave={() => handleMouseLeave(1)}>
-
-                            <img alt="runners-two" src={HomePageGraphic} className="w-full mx-auto md:w-full bg-red-300 " />
-                            <button className={buttonStyles(hovered[1])} >
-                                Add to Bag
-                            </button>
-                            <p className="mt-8 text-lg font-bold text-red-600">$89.99</p>
-                        </div>
-
-                        {/* Image 3 with price */}
-                        <div className="relative group flex flex-col items-center w-3/4"
-                            onMouseEnter={() => handleMouseEnter(2)}
-                            onMouseLeave={() => handleMouseLeave(2)}>
-
-                            <img alt="runners-three" src={Design2} className="w-full mx-auto md:w-full bg-primary-100 " />
-                            <button className={buttonStyles(hovered[2])}  >
-                                Add to Bag
-                            </button>
-                            <p className="mt-8 text-lg font-bold  text-red-600">$49.99</p>
-                        </div>
-
-                        {/* Image 4 with price */}
-                        <div className=" relative group flex flex-col items-center w-3/4"
-                            onMouseEnter={() => handleMouseEnter(3)}
-                            onMouseLeave={() => handleMouseLeave(3)}>
-
-                            <img alt="runners-four" src={Design3} className="w-full mx-auto md:w-full bg-red-300 " />
-                            <button className={buttonStyles(hovered[3])}  >
-                                Add to Bag
-                            </button>
-                            <p className="mt-8 text-lg font-bold  text-red-600">$59.99</p>
-                        </div>
+                        {products.map((product, index)=>(
+                            <div key = {product.id}
+                                className='relative group flex flex-col items-center w-3/4'
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={() => handleMouseLeave(index)}
+                            >
+                                <img alt={product.name} src={product.image} className="w-full mx-auto md:w-full bg-primary-100" />
+                                {/* Button appears when hovering over the image */}
+                                <button className={buttonStyles(hovered[index])} onClick={() => addToBasket(product)}>
+                                    Add to Bag
+                                </button>
+                                <p className="mt-8 text-lg font-bold text-red-600">${product.price.toFixed(2)}</p>
+                            
+                            </div>
+                        ))}        
                     </div>
             </div>
         </div>
         <div>
             <ContactUs setSelectedPage={setSelectedPage}/>
         </div>
-        {/* <div >
-            <Footer/>
-        </div> */}
     </section>
   
   );
