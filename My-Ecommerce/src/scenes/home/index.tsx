@@ -12,12 +12,6 @@ import { useOutletContext } from 'react-router-dom';
 import ContactUs from '@/scenes/contactus';
 
 
-
-type ContextType = { 
-    setSelectedPage: (value: SelectedPage) => void
- };
-
-
 const Home = () => {
     
     const { setSelectedPage, addToBasket } = useOutletContext<{ 
@@ -31,10 +25,10 @@ const Home = () => {
 
     //Product list
     const products =[
-        { id: 1, name: "Runners One", price: 39.99, image: Design1 },
-        { id: 2, name: "Runners Two", price: 89.99, image: HomePageGraphic },
-        { id: 3, name: "Runners Three", price: 49.99, image: Design2 },
-        { id: 4, name: "Runners Four", price: 59.99, image: Design3 },
+        { id: 1, name: "Runners T1", price: 39.99, image: Design1 },
+        { id: 2, name: "Runners T2", price: 89.99, image: HomePageGraphic },
+        { id: 3, name: "Runners T3", price: 49.99, image: Design2 },
+        { id: 4, name: "Runners T4", price: 59.99, image: Design3 },
     ] 
     // const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
     const [hovered, setHovered] = useState<boolean[]>(new Array(products.length).fill(false));
@@ -45,8 +39,12 @@ const Home = () => {
 
     //Handling mouse exiting image
     const handleMouseLeave = (index: number) => {
-        setHovered((prev) => prev.map((_, i) => false));
-      };
+        setHovered((prev) => {
+            const newHovered = [...prev]
+            newHovered[index] = false;
+            return newHovered;
+        
+      })};
     const buttonStyles = (isHovered: boolean) =>
         `absolute bottom-10 transition-opacity duration-300 bg-secondary-500 text-white font-bold py-2 px-8 rounded  hover:bg-green-500 ${
           isHovered ? "opacity-100" : "opacity-0"
